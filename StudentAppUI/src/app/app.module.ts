@@ -42,6 +42,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TopNavComponent } from './Layout/top-nav/top-nav.component';
 import { StudentsComponent } from './students/students.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   schemas :[CUSTOM_ELEMENTS_SCHEMA],

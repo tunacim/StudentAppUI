@@ -3,9 +3,16 @@
 <h1>Öğrenci Listesi </h1>
 </div>
 </div>
+<div class="container" style="margin-left: 60px;margin-top: 15px;">
+  <div class="row end-xs">
+    <div class="col-xs-12">
+        <input type="text" placeholder="Ara" class="search-input" [(ngModel)]="filterString" (keyup)="filterStudents()">
+    </div>
+</div>
+</div>
 <div class="container" style="margin-top:35px;margin-bottom: 35px;margin-right: 60px;margin-left: 60px;">
-  <div class="mt-1">
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+  <div class="mt-1 mat-elevation-z8">
+    <table mat-table [dataSource]="datasource" >
 
 
       <ng-container matColumnDef="firstName">
@@ -43,6 +50,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+</mat-paginator>
 
 
   </div>
