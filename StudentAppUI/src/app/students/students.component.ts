@@ -14,6 +14,7 @@ ngOnInit(): void {
 debugger;
   this.studentService.getStudents().subscribe(
     (succes)=>{
+      var fn=succes[0].firstName
 
     },
     (err)=>{
