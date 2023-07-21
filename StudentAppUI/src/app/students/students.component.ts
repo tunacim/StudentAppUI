@@ -18,7 +18,6 @@ datasource:MatTableDataSource<Student>=new MatTableDataSource<Student>();
 filterString=""
 constructor(private studentService:StudentService){}
 ngOnInit(): void {
-debugger;
   this.studentService.getStudents().subscribe(
     (succes)=>{
       this.students=succes
