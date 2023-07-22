@@ -13,7 +13,7 @@ export class StudentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator! : MatPaginator;
 
 students:Student[]=[]
-displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'mail','mobile','gender'];
+displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'mail','mobile','gender','edit'];
 datasource:MatTableDataSource<Student>=new MatTableDataSource<Student>();
 filterString=""
 constructor(private studentService:StudentService){}
