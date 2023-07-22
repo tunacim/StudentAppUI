@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Gender } from 'src/app/Model/UıModels/Gender.Model';
 import { Student } from 'src/app/Model/UıModels/Student.Model';
+import { GenderService } from '../services/gender.service';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -10,6 +12,7 @@ import { StudentService } from '../student.service';
 })
 export class ViewStudentComponent {
   studentId:string|null|undefined;
+  genderList:Gender[]=[]
   student:Student={
     id:"",
     firstName:"",
@@ -23,13 +26,13 @@ export class ViewStudentComponent {
       id:"",
       description:""
     },
-    address:{
+    adress:{
       id:"",
       physicalAddress:"",
       postalAddress:""
     }
   }
-  constructor(private readonly studentService:StudentService,private readonly route:ActivatedRoute){}
+  constructor(private readonly studentService:StudentService,private readonly route:ActivatedRoute,private readonly genderService:GenderService){}
 
   ngOnInit():void{
     this.route.paramMap.subscribe(
@@ -39,6 +42,15 @@ export class ViewStudentComponent {
         (succes)=>{
 
           this.student=succes
+
+        },
+        (err)=>{}
+      )
+      this.genderService.getGenderList().subscribe(
+        (succes)=>{
+          this.genderList=succes
+
+
         },
         (err)=>{}
       )
