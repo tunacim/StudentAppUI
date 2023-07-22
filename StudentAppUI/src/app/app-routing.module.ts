@@ -9,6 +9,10 @@ path:'',
 component:StudentsComponent
 },
 {
+  path:'students',
+  component:StudentsComponent
+  },
+{
   path:'students/:id',
 component:ViewStudentComponent
 }
