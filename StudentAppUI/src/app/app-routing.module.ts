@@ -15,6 +15,10 @@ component:StudentsComponent
 {
   path:'students/:id',
 component:ViewStudentComponent
+},
+{
+  path:'student/Add',
+component:ViewStudentComponent
 }
 ];
 

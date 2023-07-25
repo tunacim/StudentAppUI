@@ -14,6 +14,10 @@ import { StudentService } from '../student.service';
 export class ViewStudentComponent {
   studentId:string|null|undefined;
   genderList:Gender[]=[]
+  isNewStudent=false;
+  header="";
+
+
   student:Student={
     id:"",
     firstName:"",
@@ -43,6 +47,17 @@ export class ViewStudentComponent {
     this.route.paramMap.subscribe(
       (params)=>{
        this.studentId= params.get("id");
+       debugger
+        if(this.studentId==null||this.studentId==undefined){
+          this.isNewStudent=true;
+          this.header="Öğrenci Ekle"
+        }else{
+          this.isNewStudent=false;
+          this.header="Öğrenciyi Düzenle"
+        }
+
+
+
        this.studentService.getStudent(this.studentId).subscribe(
         (succes)=>{
 
