@@ -47,25 +47,27 @@ export class ViewStudentComponent {
     this.route.paramMap.subscribe(
       (params)=>{
        this.studentId= params.get("id");
-       debugger
+
         if(this.studentId==null||this.studentId==undefined){
           this.isNewStudent=true;
           this.header="Öğrenci Ekle"
+
         }else{
-          this.isNewStudent=false;
+
           this.header="Öğrenciyi Düzenle"
+          this.studentService.getStudent(this.studentId).subscribe(
+            (succes)=>{
+
+              this.student=succes
+
+            },
+            (err)=>{}
+          )
         }
 
 
 
-       this.studentService.getStudent(this.studentId).subscribe(
-        (succes)=>{
 
-          this.student=succes
-
-        },
-        (err)=>{}
-      )
       this.genderService.getGenderList().subscribe(
         (succes)=>{
           this.genderList=succes
@@ -80,7 +82,7 @@ export class ViewStudentComponent {
     )
   }
   onUpdate():void{
-    debugger
+
    this.studentService.updateStudent(this.student.id,this.student).subscribe(
      (succes)=>{
       this.snackBar.open("Öğrenci güncellendi !",undefined,{
@@ -111,6 +113,26 @@ export class ViewStudentComponent {
         })
       }
     )
+  }
+  onAdd(){
+    this.studentService.addStudent(this.student).subscribe(
+      (succes)=>{
+
+        this.snackBar.open("Öğrenci oluşturuldu !",undefined,{
+         duration:3131
+       })
+       this.router.navigateByUrl("students/"+succes.id)
+      },
+      (error)=>{
+
+       this.snackBar.open("Bir hata oluştu oluşturulamadı !",undefined,{
+         duration:3131
+       })
+
+
+      }
+    )
+
   }
 
 }
