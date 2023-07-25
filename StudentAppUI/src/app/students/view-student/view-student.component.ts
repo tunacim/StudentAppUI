@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from 'src/app/Model/UıModels/Gender.Model';
 import { Student } from 'src/app/Model/UıModels/Student.Model';
 import { GenderService } from '../services/gender.service';
@@ -32,7 +33,11 @@ export class ViewStudentComponent {
       postalAddress:""
     }
   }
-  constructor(private readonly studentService:StudentService,private readonly route:ActivatedRoute,private readonly genderService:GenderService){}
+  constructor(private readonly studentService:StudentService,
+    private readonly route:ActivatedRoute,
+    private readonly genderService:GenderService,
+    private readonly router:Router,
+    private readonly snackBar:MatSnackBar){}
 
   ngOnInit():void{
     this.route.paramMap.subscribe(
@@ -58,6 +63,24 @@ export class ViewStudentComponent {
 
 
     )
+  }
+  onUpdate():void{
+    debugger
+   this.studentService.updateStudent(this.student.id,this.student).subscribe(
+     (succes)=>{
+      this.snackBar.open("Öğrenci güncellendi !",undefined,{
+        duration:3131
+      })
+      this.router.navigateByUrl("students")
+     },
+     (error)=>{
+      this.snackBar.open("Bir hata oluştu güncellenemedi !",undefined,{
+        duration:3131
+      })
+
+
+     }
+   )
   }
 
 }
