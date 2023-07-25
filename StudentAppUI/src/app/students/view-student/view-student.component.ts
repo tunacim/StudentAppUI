@@ -82,5 +82,20 @@ export class ViewStudentComponent {
      }
    )
   }
+  onDelete():void{
+    this.studentService.deleteStudent(this.student.id).subscribe(
+      (succes)=>{
+        this.snackBar.open("Öğrenci silindi !",undefined,{
+          duration:3131
+        })
+        this.router.navigateByUrl("students")
+      },
+      (error)=>{
+        this.snackBar.open("Bir hata oluştu silinemedi !",undefined,{
+          duration:3131
+        })
+      }
+    )
+  }
 
 }

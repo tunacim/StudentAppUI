@@ -34,6 +34,13 @@ private BaseApiUrl='https://localhost:7167';
     }
     return this.httpClient.put<Student>(this.BaseApiUrl+'/Student/'+studentId,updateStudentRequest);
   }
+  deleteStudent(studentId:string|null):Observable<Student>{
+
+
+
+
+    return this.httpClient.delete<Student>(this.BaseApiUrl+'/Student/'+studentId);
+  }
 
 
 }
